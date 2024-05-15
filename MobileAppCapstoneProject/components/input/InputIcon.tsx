@@ -11,11 +11,24 @@ export function InputLeftIcon({
   return <Ionicons {...rest} style={styles.leftIcon} size={24} />;
 }
 
+export function InputRightIcon({
+  style,
+  ...rest
+}: IconProps<ComponentProps<typeof Ionicons>["name"]>) {
+  return <Ionicons {...rest} style={styles.rightIcon} size={24} />;
+}
+
 const styles = StyleSheet.create({
   leftIcon: {
     position: "absolute",
     left: 8,
     top: 14,
     color: Colors.primary[100],
+  },
+  rightIcon: {
+    position: "absolute",
+    right: 8,
+    top: 14,
+    color: Colors.black[60],
   },
 });

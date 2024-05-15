@@ -3,7 +3,7 @@ import * as SecureStore from "expo-secure-store";
 import { jwtDecode } from "jwt-decode";
 
 function save(key: string, value: string) {
-  SecureStore.setItemAsync(key, value);
+  SecureStore.setItem(key, value);
 }
 
 function get(key: string) {
@@ -14,11 +14,12 @@ function remove(key: string) {
   SecureStore.deleteItemAsync(key);
 }
 
-const setCredentials = async (credentials: any) => {
+const setCredentials = (credentials: any) => {
   const accessTokenDecoded = jwtDecode(credentials.access_token);
   const refreshTokenDecoded = jwtDecode(credentials.refresh_token);
   const accessTokenExpiry = new Date(accessTokenDecoded.exp ?? 0 * 1000);
   const refreshTokenExpiry = new Date(refreshTokenDecoded.exp ?? 0 * 1000);
+  console.log(credentials);
 
   save("access_token", credentials.access_token);
   save("refresh_token", credentials.refresh_token);
@@ -37,13 +38,11 @@ const getUserId = () => {
 };
 
 const getAccessToken = () => {
-  const res = get("access_token");
-  return res;
+  return get("access_token");
 };
 
 const isAccessExpired = () => {
-  const res = get("access_token_expiry");
-  return res ? new Date(res) < new Date() : true;
+  return get("access_token_expiry");
 };
 
 const logout = async () => {

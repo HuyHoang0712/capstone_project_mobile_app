@@ -59,4 +59,5 @@ export const Colors = {
     20: "rgba(166, 168, 177, 1.0)",
     10: "rgba(190, 192, 202, 1.0)",
   },
+  "bg-color": "#f4f5fa",
 };

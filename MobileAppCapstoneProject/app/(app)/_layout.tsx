@@ -1,9 +1,9 @@
-import { Redirect, Stack } from 'expo-router';
-
-import { SecureStoreService } from '@/utils/SecureStore.service';
+import { Redirect, Tabs } from "expo-router";
+import { TabBarIcon } from "@/components/navigation/TabBarIcon";
+import { SecureStoreService } from "@/utils/SecureStore.service";
 export default function AppLayout() {
   const accessToken = SecureStoreService.getAccessToken();
-  
+
   // You can keep the splash screen open, or render a loading screen like we do here.
 
   // Only require authentication within the (app) group's layout as users
@@ -15,5 +15,25 @@ export default function AppLayout() {
   }
 
   // This layout can be deferred because it's not the root layout.
-  return <Stack />;
+  return (
+    <Tabs
+      screenOptions={{
+        tabBarActiveTintColor: "black",
+        headerShown: false,
+      }}
+    >
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: "Home",
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              name={focused ? "home" : "home-outline"}
+              color={color}
+            />
+          ),
+        }}
+      />
+    </Tabs>
+  );
 }

@@ -1,5 +1,5 @@
 import { useFonts } from "expo-font";
-import { Slot } from "expo-router";
+import { Slot, Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 import "react-native-reanimated";
@@ -24,7 +24,9 @@ export default function RootLayout() {
 
   return (
     <AppProvider>
-      <Slot />
+      <Stack>
+        <Stack.Screen name="(app)" options={{ headerShown: false }} />
+      </Stack>
     </AppProvider>
   );
 }

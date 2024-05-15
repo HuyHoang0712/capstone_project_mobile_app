@@ -7,9 +7,9 @@ import type {
 import { RootState } from "./store";
 import { SecureStoreService } from "@/utils/SecureStore.service";
 const apiURL =
-  process.env.NEXT_PUBLIC_NODE_ENV === "production"
-    ? process.env.NEXT_PUBLIC_BACKEND_PROD
-    : process.env.NEXT_PUBLIC_BACKEND_DEV;
+  process.env.EXPO_PUBLIC_NODE_ENV === "production"
+    ? process.env.EXPO_PUBLIC_BACKEND_PROD
+    : process.env.EXPO_PUBLIC_BACKEND_DEV;
 
 // const mutex = new Mutex();
 const baseQuery = fetchBaseQuery({

@@ -1,6 +1,7 @@
 import { Redirect, Tabs } from "expo-router";
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { SecureStoreService } from "@/utils/SecureStore.service";
+import { Colors } from "@/constants";
 export default function AppLayout() {
   const accessToken = SecureStoreService.getAccessToken();
 
@@ -18,7 +19,7 @@ export default function AppLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: "black",
+        tabBarActiveTintColor: Colors.primary[100],
         headerShown: false,
       }}
     >
@@ -29,6 +30,39 @@ export default function AppLayout() {
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
               name={focused ? "home" : "home-outline"}
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="(order)"
+        options={{
+          title: "Order",
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon name={focused ? "bag" : "bag-outline"} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="map"
+        options={{
+          title: "Map",
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              name={focused ? "location" : "location-outline"}
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="profile"
+        options={{
+          title: "Profile",
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              name={focused ? "person" : "person-outline"}
               color={color}
             />
           ),

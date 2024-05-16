@@ -17,8 +17,8 @@ function remove(key: string) {
 const setCredentials = (credentials: any) => {
   const accessTokenDecoded = jwtDecode(credentials.access_token);
   const refreshTokenDecoded = jwtDecode(credentials.refresh_token);
-  const accessTokenExpiry = new Date(accessTokenDecoded.exp ?? 0 * 1000);
-  const refreshTokenExpiry = new Date(refreshTokenDecoded.exp ?? 0 * 1000);
+  const accessTokenExpiry = new Date((accessTokenDecoded.exp ?? 0) * 1000);
+  const refreshTokenExpiry = new Date((refreshTokenDecoded.exp ?? 0) * 1000);
   console.log(credentials);
 
   save("access_token", credentials.access_token);
@@ -42,7 +42,12 @@ const getAccessToken = () => {
 };
 
 const isAccessExpired = () => {
-  return get("access_token_expiry");
+  const accessToken = get("access_token");
+  if (accessToken) {
+    const decoded = jwtDecode(accessToken);
+    return new Date().getTime() > new Date((decoded.exp ?? 0) * 1000).getTime();
+  }
+  return true;
 };
 
 const logout = async () => {

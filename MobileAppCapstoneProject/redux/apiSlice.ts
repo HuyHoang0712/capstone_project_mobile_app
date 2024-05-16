@@ -16,8 +16,11 @@ const baseQuery = fetchBaseQuery({
   baseUrl: apiURL,
   prepareHeaders: (headers, { getState }) => {
     const state = getState() as RootState;
+    console.log(apiURL);
+
     const token = SecureStoreService.getAccessToken();
     const tokenExpired = SecureStoreService.isAccessExpired();
+
     if (token) {
       if (!tokenExpired) {
         headers.set("authorization", `Bearer ${token}`);

@@ -1,4 +1,4 @@
 import { Texts } from "./Text";
 import { Colors } from "./Colors";
-
-export { Texts, Colors };
+import URLS from "./Urls";
+export { Texts, Colors, URLS };

@@ -12,7 +12,7 @@ import { Colors } from "@/constants";
 const ProfileButton = () => {
   const [showModal, setShowModal] = useState(false);
   return (
-    <View style={{ position: "relative" }}>
+    <>
       <Pressable
         style={styles.profileButton}
         onPress={() => setShowModal(!showModal)}
@@ -64,7 +64,7 @@ const ProfileButton = () => {
           </TouchableHighlight>
         </View>
       )}
-    </View>
+    </>
   );
 };
 
@@ -81,11 +81,11 @@ const styles = StyleSheet.create({
     color: Colors.primary[100],
   },
   popUpContainer: {
-    top: 45,
-    right: 0,
-    zIndex: 1,
+    top: 60,
+    right: 20,
     backgroundColor: "white",
     position: "absolute",
+    zIndex: 100,
     width: 180,
     height: 200,
     paddingHorizontal: 16,

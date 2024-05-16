@@ -22,11 +22,7 @@ type Inputs = {
 };
 
 const LoginPage = () => {
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<Inputs>({ mode: "all" });
+  const { control, handleSubmit } = useForm<Inputs>({ mode: "all" });
   const [login] = useLoginMutation();
   const onSubmit: SubmitHandler<Inputs> = async (data) => {
     await login(data)

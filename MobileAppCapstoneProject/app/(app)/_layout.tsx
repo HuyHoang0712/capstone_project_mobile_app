@@ -24,7 +24,7 @@ export default function AppLayout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
           title: "Home",
           tabBarIcon: ({ color, focused }) => (
@@ -66,6 +66,20 @@ export default function AppLayout() {
               color={color}
             />
           ),
+        }}
+      />
+      <Tabs.Screen
+        name="request"
+        options={{
+          // This tab will no longer show up in the tab bar.
+          href: null,
+        }}
+      />
+      <Tabs.Screen
+        name="index"
+        options={{
+          // This tab will no longer show up in the tab bar.
+          href: null,
         }}
       />
     </Tabs>

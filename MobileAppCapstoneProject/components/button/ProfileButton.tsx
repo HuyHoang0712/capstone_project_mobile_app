@@ -8,6 +8,7 @@ import {
   TouchableHighlight,
   TouchableWithoutFeedback,
 } from "react-native";
+import { Link } from "expo-router";
 import { Colors } from "@/constants";
 const ProfileButton = () => {
   const [showModal, setShowModal] = useState(false);
@@ -35,22 +36,23 @@ const ProfileButton = () => {
                 </Text>
               </View>
             </TouchableHighlight>
-            <TouchableHighlight
-              underlayColor={Colors.black[10]}
-              style={{ borderRadius: 8, width: "100%" }}
-              onPress={() => {}}
-            >
-              <View style={styles.button}>
-                <Ionicons
-                  name="push-outline"
-                  size={20}
-                  color={Colors.black[90]}
-                />
-                <Text className="text-base font-medium text-black-90">
-                  Create Request
-                </Text>
-              </View>
-            </TouchableHighlight>
+            <Link href="/request/requests" asChild>
+              <TouchableHighlight
+                underlayColor={Colors.black[10]}
+                style={{ borderRadius: 8, width: "100%" }}
+              >
+                <View style={styles.button}>
+                  <Ionicons
+                    name="push-outline"
+                    size={20}
+                    color={Colors.black[90]}
+                  />
+                  <Text className="text-base font-medium text-black-90">
+                    Request
+                  </Text>
+                </View>
+              </TouchableHighlight>
+            </Link>
           </View>
           <TouchableHighlight
             underlayColor={Colors["red-10"]}

@@ -10,7 +10,7 @@ import {
 import { Colors } from "@/constants";
 import ProfileButton from "@/components/button/ProfileButton";
 import PersonalDetails from "@/components/profile/PersonalDetails";
-import PerSonalRequests from "@/components/profile/PerSonalRequests";
+import AssignedVehicle from "@/components/profile/AssignedVehicle";
 const ProfilePage = () => {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
@@ -23,7 +23,7 @@ const ProfilePage = () => {
 
         <ScrollView style={styles.scrollView}>
           <PersonalDetails />
-          <PerSonalRequests />
+          <AssignedVehicle />
         </ScrollView>
       </View>
     </SafeAreaView>

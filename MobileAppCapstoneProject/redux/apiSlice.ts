@@ -50,7 +50,7 @@ const baseQueryWithReauth: BaseQueryFn<
       // retry the original query with new access token
       result = await baseQuery(args, api, extraOptions);
     } else {
-      // api.dispatch(logOut());
+      await SecureStoreService.logout();
     }
   }
   return result;

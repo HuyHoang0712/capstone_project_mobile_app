@@ -21,7 +21,7 @@ export default function RequestLayout() {
           ),
         }}
       />
-      <Stack.Screen name="[requestID]" />
+     
     </Stack>
   );
 }

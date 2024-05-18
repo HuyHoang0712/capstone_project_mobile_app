@@ -24,7 +24,7 @@ export default function RootLayout() {
 
   return (
     <AppProvider>
-      <Stack>
+      <Stack screenOptions={{ headerShown: false }}>
         <Stack.Screen name="(app)" options={{ headerShown: false }} />
       </Stack>
     </AppProvider>

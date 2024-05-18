@@ -2,6 +2,7 @@ import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { useGetCurrentEmployeeIssuesQuery } from "@/redux/features/request/requestApiSlice";
 import CreateRequestModal from "@/components/request/CreateRequestModal";
+import RequestList from "@/components/request/RequestList";
 const RequestsPage = () => {
   const {
     data: requests,
@@ -11,9 +12,12 @@ const RequestsPage = () => {
   return (
     <View style={styles.container}>
       <View style={styles.header}>
-        <Text className="text-xl font-semibold text-black-100">Request List</Text>
+        <Text className="text-xl font-semibold text-black-100">
+          Request List
+        </Text>
         <CreateRequestModal />
       </View>
+      <RequestList />
     </View>
   );
 };

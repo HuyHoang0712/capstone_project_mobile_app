@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, Pressable, ScrollView } from "react-native";
+import {
+  View,
+  Text,
+  StyleSheet,
+  Pressable,
+  ScrollView,
+  Alert,
+} from "react-native";
 import { Colors } from "@/constants";
 import clsx from "clsx";
 import FormInput from "../input/FormInput";
@@ -8,6 +15,7 @@ import { useForm, SubmitHandler } from "react-hook-form";
 import { useCreateIssueMutation } from "@/redux/features/request/requestApiSlice";
 import SolidButton from "../button/SolidButton";
 import { REQUEST_LABELS } from "@/constants";
+import { SecureStoreService } from "@/utils/SecureStore.service";
 type Inputs = {
   title: string;
   label: string;
@@ -27,7 +35,23 @@ const CreateRequestForm = ({
   const [requestType, setRequestType] = useState(0);
   const [createIssue] = useCreateIssueMutation();
   const { control, handleSubmit, setValue } = useForm<Inputs>({ mode: "all" });
-  const onSubmit: SubmitHandler<Inputs> = async (data) => console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const user_id = SecureStoreService.getUserId();
+    const rq_data: { [key: string]: any } = { ...data };
+    if (requestType === 1) {
+      rq_data["vehicle_id"] = vehicle.id;
+    }
+    await createIssue({
+      data: rq_data,
+      type: requestType === 0 ? "employee" : "vehicle",
+    })
+      .unwrap()
+      .then(() => {
+        Alert.alert("Request added successfully!");
+        setShowModal(false);
+      })
+      .catch((error) => Alert.alert(error.data.detail));
+  };
 
   return (
     <View style={styles.container}>

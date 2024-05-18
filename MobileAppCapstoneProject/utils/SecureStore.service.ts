@@ -25,7 +25,7 @@ const setCredentials = (credentials: any) => {
   save("refresh_token", credentials.refresh_token);
   save("access_token_expiry", accessTokenExpiry.toISOString());
   save("refresh_token_expiry", refreshTokenExpiry.toISOString());
-  save("user_id", accessTokenDecoded.iss ?? "");
+  save("user_id", (accessTokenDecoded as any).user_id);
   save("user_name", credentials.user_name);
 };
 

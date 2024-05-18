@@ -6,6 +6,7 @@ import {
   TextInput,
   ScrollView,
   TouchableHighlight,
+  TouchableWithoutFeedback,
   Modal,
 } from "react-native";
 import { useController } from "react-hook-form";
@@ -71,7 +72,16 @@ const SearchInput = ({
           onChange={() => filterData(field.value)}
           className="w-full py-3 px-3 text-base text-black-60 rounded-lg border border-primary-30 box-border"
           onFocus={() => setPopupShow(true)}
+          onBlur={field.onBlur}
         />
+        {error && (
+          <Text
+            style={styles.errorText}
+            className="text-xs font-medium text-red"
+          >
+            {error.message}
+          </Text>
+        )}
 
         <Modal
           visible={popupShow}
@@ -81,40 +91,49 @@ const SearchInput = ({
             setPopupShow(!popupShow);
           }}
         >
-          <View
-            style={{
-              flex: 1,
-              alignItems: "center",
-              justifyContent: "center",
+          <TouchableWithoutFeedback
+            style={{ flex: 1 }}
+            onPress={() => {
+              setPopupShow(false);
+              field.onBlur();
             }}
           >
             <View
-              style={[
-                styles.popupContainer,
-                { minHeight: curData.length > 0 ? 200 : "auto" },
-              ]}
+              style={{
+                flex: 1,
+                alignItems: "center",
+                justifyContent: "center",
+                backgroundColor: "rgba(0,0,0,0.5)",
+              }}
             >
-              {curData.length > 0 ? (
-                <ScrollView contentContainerStyle={{ width: "100%" }}>
-                  {curData.map((item, index) => (
-                    <TouchableHighlight
-                      key={index}
-                      underlayColor={Colors.black[10]}
-                      onPress={() => {
-                        field.onChange(item[key_value]);
-                        onPress(item);
-                        setPopupShow(false);
-                      }}
-                    >
-                      <Text style={styles.textCard}>{item.label}</Text>
-                    </TouchableHighlight>
-                  ))}
-                </ScrollView>
-              ) : (
-                <Text style={styles.textCard}>-- Epmty --</Text>
-              )}
+              <View
+                style={[
+                  styles.popupContainer,
+                  { minHeight: curData.length > 0 ? 200 : "auto" },
+                ]}
+              >
+                {curData.length > 0 ? (
+                  <ScrollView contentContainerStyle={{ width: "100%" }}>
+                    {curData.map((item, index) => (
+                      <TouchableHighlight
+                        key={index}
+                        underlayColor={Colors.black[10]}
+                        onPress={() => {
+                          field.onChange(item[key_value]);
+                          onPress(item);
+                          setPopupShow(false);
+                        }}
+                      >
+                        <Text style={styles.textCard}>{item.label}</Text>
+                      </TouchableHighlight>
+                    ))}
+                  </ScrollView>
+                ) : (
+                  <Text style={styles.textCard}>-- Epmty --</Text>
+                )}
+              </View>
             </View>
-          </View>
+          </TouchableWithoutFeedback>
         </Modal>
       </View>
     </View>
@@ -141,5 +160,10 @@ const styles = StyleSheet.create({
   textCard: {
     width: "100%",
     padding: 16,
+  },
+  errorText: {
+    position: "absolute",
+    bottom: -16,
+    left: 0,
   },
 });

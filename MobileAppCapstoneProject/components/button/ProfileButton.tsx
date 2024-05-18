@@ -6,10 +6,10 @@ import {
   StyleSheet,
   Pressable,
   TouchableHighlight,
-  TouchableWithoutFeedback,
 } from "react-native";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { Colors } from "@/constants";
+import { SecureStoreService } from "@/utils/SecureStore.service";
 const ProfileButton = () => {
   const [showModal, setShowModal] = useState(false);
   return (
@@ -57,7 +57,10 @@ const ProfileButton = () => {
           <TouchableHighlight
             underlayColor={Colors["red-10"]}
             style={{ borderRadius: 8, marginTop: 8 }}
-            onPress={() => {}}
+            onPress={() => {
+              SecureStoreService.logout();
+              router.replace("/sign-in");
+            }}
           >
             <View style={styles.button}>
               <Ionicons name="log-out-outline" size={20} color={Colors.red} />

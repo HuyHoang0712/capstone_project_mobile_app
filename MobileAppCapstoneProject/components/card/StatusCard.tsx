@@ -35,7 +35,7 @@ const StatusCard = (props: Props) => {
 
   return (
     <View
-      className={clsx("text-sm px-4 py-1 rounded-lg", {
+      className={clsx("text-sm px-4 py-1 rounded-lg self-start", {
         "bg-[#32936F]/[.16] text-green": label === 2,
         "bg-secondary-30 text-[#FAA300]": label === 0,
         "bg-[#5570F1]/[.16] text-primary-100": label === 1,

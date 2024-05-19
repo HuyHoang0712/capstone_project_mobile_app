@@ -31,7 +31,7 @@ const CreateRequestModal = () => {
           title="Add Request"
           setShowModal={setShowModal}
           FormContent={CreateRequestForm}
-          formProps={vehicle ?? vehicle.id}
+          formProps={vehicle && vehicle.license_plate}
         />
       </Modal>
     </TouchableOpacity>

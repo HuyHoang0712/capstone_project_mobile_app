@@ -58,7 +58,7 @@ const RequestCard = ({ data }: RequestCardProps) => {
             setModalVisible(!modalVisible);
           }}
         >
-          <RequestDetail {...data} />
+          <RequestDetail data={data} setModalVisible={setModalVisible} />
         </Modal>
       </View>
     </TouchableHighlight>

@@ -3,6 +3,8 @@ import { View, Text, StyleSheet, FlatList } from "react-native";
 import RequestCard from "@/components/card/RequestCard";
 import { useGetCurrentEmployeeIssuesQuery } from "@/redux/features/request/requestApiSlice";
 import { Colors } from "@/constants";
+import SearchBar from "../search/SearchBar";
+import { SearchFilter } from "@/utils/SearchFilter.service";
 const RequestList = () => {
   const {
     data: requests,
@@ -10,6 +12,7 @@ const RequestList = () => {
     isLoading,
   } = useGetCurrentEmployeeIssuesQuery(undefined);
   const [layout, setLayout] = useState({ width: 0, height: 0 });
+  const [search, setSearch] = useState("");
   if (isLoading) {
     return (
       <View
@@ -25,11 +28,11 @@ const RequestList = () => {
       onLayout={(event) => setLayout(event.nativeEvent.layout)}
     >
       <View style={styles.titleContainer}>
-        <Text>RequestList</Text>
+        <SearchBar search={search} setSearch={setSearch} />
       </View>
       <FlatList
         key={"#"}
-        data={requests}
+        data={requests && SearchFilter.searchByKey("title", search, requests)}
         renderItem={({ item }) => <RequestCard data={item} />}
         keyExtractor={(item) => "#" + item.id.toString()}
         contentContainerStyle={styles.listContainer}
@@ -54,9 +57,6 @@ const styles = StyleSheet.create({
     width: "100%",
     paddingHorizontal: 20,
     paddingVertical: 10,
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
-    borderColor: Colors.black[10],
   },
   listContainer: {
     rowGap: 20,

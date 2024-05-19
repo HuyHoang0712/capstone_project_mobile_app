@@ -39,8 +39,12 @@ const CreateRequestForm = ({
     const user_id = SecureStoreService.getUserId();
     const rq_data: { [key: string]: any } = { ...data };
     if (requestType === 1) {
-      rq_data["vehicle_id"] = vehicle.id;
+      rq_data["vehicle_id"] = vehicle;
     }
+    console.log(vehicle);
+    
+    console.log(rq_data);
+
     await createIssue({
       data: rq_data,
       type: requestType === 0 ? "employee" : "vehicle",

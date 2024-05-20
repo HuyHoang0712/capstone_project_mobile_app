@@ -6,7 +6,10 @@ export const orderApiSlice = apiSlice.injectEndpoints({
     getCurrentOrders: builder.query({
       query: () => URLS.ORDER_URL + `get_current_orders/`,
     }),
+    getOrderByID: builder.query({
+      query: (id) => URLS.ORDER_URL + `get_order_by_id/?id=${id}`,
+    }),
   }),
 });
 
-export const { useGetCurrentOrdersQuery } = orderApiSlice;
+export const { useGetCurrentOrdersQuery, useGetOrderByIDQuery } = orderApiSlice;

@@ -3,6 +3,7 @@ import { Redirect } from "expo-router";
 import { SecureStoreService } from "@/utils/SecureStore.service";
 const Index = () => {
   const accessToken = SecureStoreService.getAccessToken();
+  console.log("accessToken", accessToken);
 
   // You can keep the splash screen open, or render a loading screen like we do here.
 

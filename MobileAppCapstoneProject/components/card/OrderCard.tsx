@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { View, Text, StyleSheet, TouchableHighlight } from "react-native";
 import StatusCard from "./StatusCard";
+import { router } from "expo-router";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Colors } from "@/constants";
 type OrderCardProps = {
@@ -12,7 +13,7 @@ const OrderCard = ({ data }: OrderCardProps) => {
     <TouchableHighlight
       style={{ width: "100%", borderRadius: 8 }}
       underlayColor={Colors.primary[10]}
-      onPress={() => {}}
+      onPress={() => router.push(`/order/${data.id}`)}
     >
       <View style={styles.container} className="shadow-sm">
         <View style={styles.content}>

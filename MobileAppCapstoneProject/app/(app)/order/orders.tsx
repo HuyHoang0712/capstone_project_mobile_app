@@ -13,21 +13,15 @@ import HeaderPage from "@/components/navigation/HeaderPage";
 import OrderList from "@/components/order/OrderList";
 const OrderPage = () => {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
-      <StatusBar barStyle="dark-content" />
-      <TouchableWithoutFeedback style={{ flex: 1 }} onPress={Keyboard.dismiss}>
-        <View style={styles.container}>
-          <HeaderPage />
-          <Text
-            style={styles.title}
-            className="text-xl font-semibold text-black-60"
-          >
-            Assigned Orders
-          </Text>
-          <OrderList />
-        </View>
-      </TouchableWithoutFeedback>
-    </SafeAreaView>
+    <View style={styles.container}>
+      <Text
+        style={styles.title}
+        className="text-xl font-semibold text-black-60"
+      >
+        Assigned Orders
+      </Text>
+      <OrderList />
+    </View>
   );
 };
 

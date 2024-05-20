@@ -1,4 +1,4 @@
-import { apiSlice } from "../../apiSlice";
+import { apiSlice } from "../../apiSlice.tsx";
 import { URLS } from "@/constants";
 
 export const orderApiSlice = apiSlice.injectEndpoints({

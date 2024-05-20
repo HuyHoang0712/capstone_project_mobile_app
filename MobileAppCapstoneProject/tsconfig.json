@@ -13,5 +13,5 @@
     "**/*.tsx",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
-, "components/profile/AssignedVehicle.tss", "utils/SecureStore.service.js", "components/request/RequestList.tss"  ]
+,  ]
 }

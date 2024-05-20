@@ -9,10 +9,7 @@ type SearchBarProps = {
 
 const SearchBar = ({ search, setSearch }: SearchBarProps) => {
   return (
-    <View
-      style={styles.container}
-      className="rounded-lg border-[1px] border-black-10 focus-within:border-primary-100"
-    >
+    <View style={styles.container} className="rounded-lg shadow-sm">
       <Ionicons
         style={styles.icon}
         name="search"
@@ -47,7 +44,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    width: "65%",
+    width: "75%",
     backgroundColor: "white",
   },
   icon: {

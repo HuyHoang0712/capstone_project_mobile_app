@@ -6,15 +6,9 @@ import {
   TouchableWithoutFeedback,
   Keyboard,
 } from "react-native";
-import { useGetCurrentEmployeeIssuesQuery } from "@/redux/features/request/requestApiSlice";
 import CreateRequestModal from "@/components/request/CreateRequestModal";
 import RequestList from "@/components/request/RequestList";
 const RequestsPage = () => {
-  const {
-    data: requests,
-    error,
-    isLoading,
-  } = useGetCurrentEmployeeIssuesQuery(undefined);
   return (
     <TouchableWithoutFeedback
       style={{ flex: 1 }}

@@ -1,8 +1,7 @@
 import React, { useState } from "react";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { View, StyleSheet, FlatList } from "react-native";
 import RequestCard from "@/components/card/RequestCard";
 import { useGetCurrentEmployeeIssuesQuery } from "@/redux/features/request/requestApiSlice";
-import { Colors } from "@/constants";
 import SearchBar from "../search/SearchBar";
 import { SearchFilter } from "@/utils/SearchFilter.service";
 const RequestList = () => {
@@ -11,7 +10,6 @@ const RequestList = () => {
     error,
     isLoading,
   } = useGetCurrentEmployeeIssuesQuery(undefined);
-  const [layout, setLayout] = useState({ width: 0, height: 0 });
   const [search, setSearch] = useState("");
   if (isLoading) {
     return (
@@ -23,10 +21,7 @@ const RequestList = () => {
   }
 
   return (
-    <View
-      style={styles.container}
-      onLayout={(event) => setLayout(event.nativeEvent.layout)}
-    >
+    <View style={styles.container}>
       <View style={styles.titleContainer}>
         <SearchBar search={search} setSearch={setSearch} />
       </View>

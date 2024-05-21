@@ -5,6 +5,7 @@ import type {
   FetchBaseQueryError,
 } from "@reduxjs/toolkit/query";
 import { RootState } from "./store";
+import { router } from "expo-router";
 import { SecureStoreService } from "@/utils/SecureStore.service";
 const apiURL =
   process.env.EXPO_PUBLIC_NODE_ENV === "production"
@@ -51,6 +52,7 @@ const baseQueryWithReauth: BaseQueryFn<
       result = await baseQuery(args, api, extraOptions);
     } else {
       await SecureStoreService.logout();
+      router.replace("sign-in");
     }
   }
   return result;

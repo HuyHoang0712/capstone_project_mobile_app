@@ -1,32 +1,42 @@
 import React, { useState } from "react";
 import {
+  TouchableOpacity,
   View,
   Text,
-  Modal,
-  Alert,
   StyleSheet,
-  TouchableOpacity,
+  Modal,
   TouchableHighlight,
+  Alert,
 } from "react-native";
-import { Colors } from "@/constants";
-import { useUpdateIssueStatusMutation } from "@/redux/features/request/requestApiSlice";
-
-type CancelRequestProps = {
+import { Colors, STATUS } from "@/constants";
+import clsx from "clsx";
+import { useUpdateOrderStatusMutation } from "@/redux/features/order/orderApiSlice";
+type UpdateOrderStatusButtonProps = {
   id: string;
-  type: string;
+  curStatus: number;
 };
 
-const CancelRequest = ({ id, type }: CancelRequestProps) => {
+const UpdateOrderStatusButton = ({
+  id,
+  curStatus,
+}: UpdateOrderStatusButtonProps) => {
+  const [updateOrderStatus] = useUpdateOrderStatusMutation();
   const [modalVisible, setModalVisible] = useState(false);
-  const [updateIssueStatus] = useUpdateIssueStatusMutation();
+
   const handleCancel = async () => {
-    await updateIssueStatus({ id, status: 4, type })
+    // handle cancel
+    await updateOrderStatus({
+      id: id,
+      status: curStatus + 1,
+    })
       .unwrap()
       .then(() => {
-        Alert.alert("Request is canceled!");
+        Alert.alert("Success", "Order status updated successfully");
         setModalVisible(false);
       })
-      .catch((error) => Alert.alert(error.data.detail));
+      .catch((error) => {
+        Alert.alert(error.data.detail);
+      });
   };
 
   return (
@@ -34,8 +44,19 @@ const CancelRequest = ({ id, type }: CancelRequestProps) => {
       <TouchableOpacity
         style={styles.container}
         onPress={() => setModalVisible(true)}
+        disabled={curStatus === 2 || curStatus === 3}
+        className={clsx("py-2 rounded-lg", {
+          "bg-green": curStatus === 1 || curStatus === 2,
+          "bg-primary-100": curStatus === 0,
+          "bg-red": curStatus === 3,
+        })}
       >
-        <Text className="text-base font-medium text-white">Cancel</Text>
+        <Text className="text-base font-medium text-white">
+          {curStatus === 0 && "Delivering Order"}
+          {curStatus === 1 && "Complete Order"}
+          {curStatus === 2 && "Completed"}
+          {curStatus === 3 && "Canceled"}
+        </Text>
       </TouchableOpacity>
       <Modal
         animationType="fade"
@@ -58,8 +79,10 @@ const CancelRequest = ({ id, type }: CancelRequestProps) => {
               style={{ textAlign: "center" }}
               className="text-base font-medium text-black-90 p-5"
             >
-              Do you want to cancel this request?{"\n"} This action cannot be
-              undo.
+              {curStatus === 0 && "Delivering this order?"}
+              {curStatus === 1 && "Completing this order?"}
+              {"\n"}
+              This action cannot be undo!
             </Text>
             <View
               style={{
@@ -70,6 +93,14 @@ const CancelRequest = ({ id, type }: CancelRequestProps) => {
                 borderColor: Colors.black[10],
               }}
             >
+              <TouchableOpacity
+                style={[styles.confirmBtn, { flex: 1 }]}
+                onPress={() => handleCancel()}
+              >
+                <Text className="text-base font-medium text-white">
+                  Confirm
+                </Text>
+              </TouchableOpacity>
               <TouchableHighlight
                 style={[styles.cancelBtn, { flex: 1 }]}
                 onPress={() => setModalVisible(false)}
@@ -79,14 +110,6 @@ const CancelRequest = ({ id, type }: CancelRequestProps) => {
                   Cancel
                 </Text>
               </TouchableHighlight>
-              <TouchableOpacity
-                style={[styles.confirmBtn, { flex: 1 }]}
-                onPress={() => handleCancel()}
-              >
-                <Text className="text-base font-medium text-white">
-                  Confirm
-                </Text>
-              </TouchableOpacity>
             </View>
           </View>
         </View>
@@ -95,18 +118,13 @@ const CancelRequest = ({ id, type }: CancelRequestProps) => {
   );
 };
 
-export default CancelRequest;
+export default UpdateOrderStatusButton;
 
 const styles = StyleSheet.create({
   container: {
     display: "flex",
-    flexDirection: "row",
-    columnGap: 8,
-    borderRadius: 8,
+    width: "100%",
     alignItems: "center",
-    paddingVertical: 8,
-    paddingHorizontal: 16,
-    backgroundColor: Colors.red,
   },
   modalContainer: {
     width: "80%",
@@ -118,14 +136,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     padding: 12,
-    borderBottomLeftRadius: 8,
+    borderBottomRightRadius: 8,
   },
   confirmBtn: {
     display: "flex",
     alignItems: "center",
     justifyContent: "center",
     padding: 12,
-    borderBottomRightRadius: 8,
-    backgroundColor: Colors.red,
+    borderBottomLeftRadius: 8,
+    backgroundColor: Colors.primary[100],
   },
 });

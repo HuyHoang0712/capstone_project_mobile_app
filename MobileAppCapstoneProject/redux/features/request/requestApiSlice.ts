@@ -1,4 +1,4 @@
-import { apiSlice } from "../../apiSlice.tsx";
+import { apiSlice } from "../../apiSlice";
 import { URLS } from "@/constants";
 export const issueApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({

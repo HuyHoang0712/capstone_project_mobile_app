@@ -1,4 +1,4 @@
-import { apiSlice } from "../../apiSlice.tsx";
+import { apiSlice } from "../../apiSlice";
 import { setCredentials } from "./authSlice";
 import { SecureStoreService } from "@/utils/SecureStore.service";
 export const authApiSlice = apiSlice.injectEndpoints({

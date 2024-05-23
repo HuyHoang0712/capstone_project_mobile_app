@@ -11,12 +11,22 @@ const OrderDetail = () => {
   const { id } = useLocalSearchParams();
   const { data: order, isLoading } = useGetOrderByIDQuery(id);
   if (isLoading) return <Text>Loading...</Text>;
-  console.log(order);
-  
+
+  const pickUpLocation = {
+    latitude: Number(order.pickup_point.latitude),
+    longitude: Number(order.pickup_point.longitude),
+  };
+  const deliveryLocation = {
+    latitude: Number(order.delivery_point.latitude),
+    longitude: Number(order.delivery_point.longitude),
+  };
   return (
     <GestureHandlerRootView style={styles.container}>
       <NavigateBackButton />
-      <RouteMap />
+      <RouteMap
+        pickUpLocation={pickUpLocation}
+        deliveryLocation={deliveryLocation}
+      />
       <OrderDetailSlide order={order} />
     </GestureHandlerRootView>
   );

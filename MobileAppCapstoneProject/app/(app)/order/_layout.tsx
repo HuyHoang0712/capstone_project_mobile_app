@@ -6,7 +6,12 @@ import {
   Keyboard,
 } from "react-native";
 import HeaderPage from "@/components/navigation/HeaderPage";
+
 export default function OrderLayout() {
+
+
+
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
       <StatusBar barStyle="dark-content" />

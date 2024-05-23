@@ -24,18 +24,6 @@ export default function AppLayout() {
       }}
     >
       <Tabs.Screen
-        name="home"
-        options={{
-          title: "Home",
-          tabBarIcon: ({ color, focused }) => (
-            <TabBarIcon
-              name={focused ? "home" : "home-outline"}
-              color={color}
-            />
-          ),
-        }}
-      />
-      <Tabs.Screen
         name="order"
         options={{
           title: "Order",
@@ -45,12 +33,24 @@ export default function AppLayout() {
         }}
       />
       <Tabs.Screen
-        name="map"
+        name="request"
         options={{
-          title: "Map",
+          title: "Request",
           tabBarIcon: ({ color, focused }) => (
             <TabBarIcon
-              name={focused ? "location" : "location-outline"}
+              name={focused ? "document" : "document-outline"}
+              color={color}
+            />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="notification"
+        options={{
+          title: "Notification",
+          tabBarIcon: ({ color, focused }) => (
+            <TabBarIcon
+              name={focused ? "notifications" : "notifications-outline"}
               color={color}
             />
           ),
@@ -68,13 +68,7 @@ export default function AppLayout() {
           ),
         }}
       />
-      <Tabs.Screen
-        name="request"
-        options={{
-          // This tab will no longer show up in the tab bar.
-          href: null,
-        }}
-      />
+
       <Tabs.Screen
         name="index"
         options={{

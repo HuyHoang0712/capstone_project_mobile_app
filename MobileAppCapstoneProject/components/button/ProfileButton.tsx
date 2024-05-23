@@ -36,7 +36,7 @@ const ProfileButton = () => {
                 </Text>
               </View>
             </TouchableHighlight>
-            <Link href="/request/requests" asChild>
+            {/* <Link href="/request/requests" asChild>
               <TouchableHighlight
                 underlayColor={Colors.black[10]}
                 style={{ borderRadius: 8, width: "100%" }}
@@ -52,7 +52,7 @@ const ProfileButton = () => {
                   </Text>
                 </View>
               </TouchableHighlight>
-            </Link>
+            </Link> */}
           </View>
           <TouchableHighlight
             underlayColor={Colors["red-10"]}
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     position: "absolute",
     zIndex: 100,
     width: 180,
-    height: 200,
+    height: 160,
     paddingHorizontal: 16,
     paddingVertical: 8,
     borderRadius: 8,

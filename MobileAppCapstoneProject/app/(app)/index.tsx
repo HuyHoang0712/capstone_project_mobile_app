@@ -14,7 +14,7 @@ const Index = () => {
     // in the headless Node process that the pages are rendered in.
     return <Redirect href="/sign-in" />;
   }
-  return <Redirect href={"/home"} />;
+  return <Redirect href={"/order/orders"} />;
 };
 
 export default Index;

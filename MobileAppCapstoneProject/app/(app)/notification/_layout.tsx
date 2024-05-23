@@ -1,4 +1,4 @@
-import { Link, Stack, router } from "expo-router";
+import { Stack } from "expo-router";
 import {
   SafeAreaView,
   StatusBar,
@@ -6,9 +6,7 @@ import {
   Keyboard,
 } from "react-native";
 import HeaderPage from "@/components/navigation/HeaderPage";
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import { Colors } from "@/constants";
-export default function RequestLayout() {
+export default function NotificationLayout() {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "white" }}>
       <StatusBar barStyle="dark-content" />
@@ -16,7 +14,7 @@ export default function RequestLayout() {
         <>
           <HeaderPage />
           <Stack screenOptions={{ headerShown: false }}>
-            <Stack.Screen name="requests" />
+            <Stack.Screen name="notifications" />
           </Stack>
         </>
       </TouchableWithoutFeedback>

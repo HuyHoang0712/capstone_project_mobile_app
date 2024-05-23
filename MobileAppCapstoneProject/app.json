@@ -34,13 +34,14 @@
       [ 
         "expo-secure-store",
         {
-          "faceIDPermission": "Allow $(PRODUCT_NAME) to access your Face ID biometric data."
+          "faceIDPermission": "Allow MobileAppCapstoneProject to access your Face ID biometric data."
         }
       ],
       [
         "expo-location",
         {
-          "locationWhenInUsePermission": "Show current location on map."
+          "locationWhenInUsePermission": "Show current location on map.",
+          "locationAlwaysAndWhenInUsePermission": "Allow MobileAppCapstoneProject to use your location."
         }
       ]
     ],

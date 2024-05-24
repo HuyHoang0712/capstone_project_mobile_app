@@ -1,11 +1,9 @@
-import React, { Suspense } from "react";
+import React from "react";
 import dayjs from "dayjs";
 import {
   View,
   Text,
-  SafeAreaView,
   StyleSheet,
-  StatusBar,
   Image,
 } from "react-native";
 import { useGetUserProfileQuery } from "@/redux/features/profile/profileApiSlice";

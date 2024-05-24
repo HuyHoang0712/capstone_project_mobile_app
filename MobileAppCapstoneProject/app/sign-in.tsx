@@ -28,7 +28,7 @@ const LoginPage = () => {
     await login(data)
       .unwrap()
       .then((res) => {
-        router.replace("home");
+        router.replace("order");
       })
       .catch((err) => {
         Alert.alert("Login Failed!", err.data.error_message);

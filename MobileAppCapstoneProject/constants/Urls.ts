@@ -5,7 +5,7 @@ const PLAN_URL = URL_VERSION + "/plans/";
 const PROFILE_URL = URL_VERSION + "/profile/";
 const CUSTOMER_URL = URL_VERSION + "/customers/";
 const EMPLOYEE_URL = URL_VERSION + "/employees/";
-
+const NOTI_URL = URL_VERSION + "/notifications/";
 const VEHICLE_URL = URL_VERSION + "/vehicles/";
 const URLS = {
   ORDER_URL,
@@ -15,6 +15,7 @@ const URLS = {
   EMPLOYEE_URL,
   VEHICLE_URL,
   PROFILE_URL,
+  NOTI_URL,
 };
 
 export default URLS;

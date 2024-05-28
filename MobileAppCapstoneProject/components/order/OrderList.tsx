@@ -11,7 +11,7 @@ const OrderList = () => {
     data: orders,
     error,
     isLoading,
-  } = useGetCurrentOrdersQuery(undefined);
+  } = useGetCurrentOrdersQuery(undefined, {pollingInterval: 10000, skipPollingIfUnfocused: false});
   if (isLoading) {
     return (
       <View
@@ -24,9 +24,9 @@ const OrderList = () => {
     <View style={styles.container}>
       <View style={styles.titleContainer}>
         <SearchBar search={search} setSearch={setSearch} />
-        <View className="px-4 py-2 border-2 text-black-0 rounded-lg">
+        {/* <View className="px-4 py-2 border-2 text-black-0 rounded-lg">
           <Text className="text-base font-medium text-black-40">Filter</Text>
-        </View>
+        </View> */}
       </View>
       {orders && orders.length > 0 ? (
         <FlatList

@@ -9,7 +9,7 @@ const RequestList = () => {
     data: requests,
     error,
     isLoading,
-  } = useGetCurrentEmployeeIssuesQuery(undefined);
+  } = useGetCurrentEmployeeIssuesQuery(undefined, {pollingInterval: 10000, skipPollingIfUnfocused: false});
   const [search, setSearch] = useState("");
   if (isLoading) {
     return (

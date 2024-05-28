@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     alignItems: "center",
-    width: "75%",
+    width: "100%",
     backgroundColor: "white",
   },
   icon: {

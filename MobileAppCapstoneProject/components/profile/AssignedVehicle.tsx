@@ -13,7 +13,7 @@ const AssignedVehicle = () => {
   return (
     <View style={styles.container}>
       <Text className="text-lg font-semibold text-primary-100 w-full">
-        AssignedVehicle
+        Assigned Vehicle
       </Text>
       {vehicle ? (
         <View style={styles.content}>

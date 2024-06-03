@@ -62,7 +62,7 @@ const SearchInput = ({
 
   return (
     <View style={styles.container}>
-      <Text>SearchInput</Text>
+      <Text>{label}</Text>
       <View style={styles.inputBox}>
         <TextInput
           value={field.value}
